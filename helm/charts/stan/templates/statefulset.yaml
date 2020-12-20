@@ -277,6 +277,9 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: {{ template "stan.name" . }}-pvc
+      {{- with .Values.store.volume.annotations }}
+      annotations: {{ . }}
+      {{- end }}
     spec:
       {{- with .Values.store.volume.storageClass }}
       storageClassName: {{ . }}
